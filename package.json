@@ -1,0 +1,23 @@
+{
+  "name": "smartventory",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "smartly manage your inventory",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s4sarang/smartventory.git"
+  },
+  "author": "Sarang Girdhari",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/s4sarang/smartventory/issues"
+  },
+  "homepage": "https://github.com/s4sarang/smartventory#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

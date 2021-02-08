@@ -1,0 +1,104 @@
+[
+  {
+    "id": 1,
+    "link": "iPhone-6s",
+    "count": 3,
+    "brand": "Apple",
+    "model": "iPhone 6s",
+    "launch": 2015,
+    "path": "/images/Apple_iPhone_6s.jpg",
+    "price": 19990,
+    "category": "Mobile",
+    "unit": {
+      "serialno": 9876,
+      "team": "Xtreme devs",
+      "reason": "development",
+      "accessories": "Charger, Case"
+    }
+  },
+  {
+    "id": 2,
+    "link": "iPhone-11",
+    "count": 2,
+    "brand": "Apple",
+    "model": "iPhone 11",
+    "launch": 2019,
+    "path": "/images/Apple_iPhone_11.jpg",
+    "price": 49990,
+    "category": "Mobile",
+    "unit": {
+      "serialno": 9875,
+      "team": "sit",
+      "reason": "testing",
+      "accessories": "Charger"
+    }
+  },
+  {
+    "id": 3,
+    "link": "Macbook-Pro-2015",
+    "count": 4,
+    "brand": "Apple",
+    "model": "MacBook Pro 2015",
+    "launch": 2015,
+    "path": "/images/Apple_Macbook_Pro_2015.jpg",
+    "price": 59999,
+    "category": "Laptop",
+    "unit": {
+      "serialno": 9874,
+      "team": "We ops",
+      "reason": "testing",
+      "accessories": "Charger, Box"
+    }
+  },
+  {
+    "id": 4,
+    "link": "Macbook-Air-2019",
+    "count": 5,
+    "brand": "Apple",
+    "model": "MacBook Air 2019",
+    "launch": 2019,
+    "path": "/images/Apple_Macbook_Air_2019.jpg",
+    "price": 121000,
+    "category": "Laptop",
+    "unit": {
+      "serialno": 9873,
+      "team": "consultants",
+      "reason": "unit testing",
+      "accessories": "NA"
+    }
+  },
+  {
+    "id": 5,
+    "link": "Redmi-Note-7-Pro",
+    "count": 1,
+    "brand": "Xiaomi",
+    "model": "Redmi Note 7 Pro",
+    "launch": 2019,
+    "path": "/images/Xiaomi_Redmi_Note_7_Pro.jpg",
+    "price": 14999,
+    "category": "Mobile",
+    "unit": {
+      "serialno": 9872,
+      "team": "UAT",
+      "reason": "UA testing",
+      "accessories": "Charging Cable"
+    }
+  },
+  {
+    "id": 6,
+    "link": "Mi-A3",
+    "count": 4990,
+    "brand": "Xiaomi",
+    "model": "Mi A3",
+    "launch": 2019,
+    "path": "/images/Xiaomi_Mi_A3.png",
+    "price": 15999,
+    "category": "Mobile",
+    "unit": {
+      "serialno": 9871,
+      "team": "QA",
+      "reason": "QA testing",
+      "accessories": "Charger"
+    }
+  }
+]
