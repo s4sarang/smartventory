@@ -1,6 +1,5 @@
 {
   "name": "smartventory",
-  "type": "module",
   "version": "1.0.0",
   "description": "smartly manage your inventory",
   "main": "server.js",
