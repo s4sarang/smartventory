@@ -13,7 +13,7 @@ const HomeScreen = () => {
     };
 
     fetchAssets();
-  });
+  }, []);
 
   return (
     <>

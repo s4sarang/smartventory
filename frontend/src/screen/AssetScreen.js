@@ -14,7 +14,7 @@ const AssetScreen = ({ match }) => {
     };
 
     fetchAssets();
-  });
+  }, [match]);
 
   return (
     <>
