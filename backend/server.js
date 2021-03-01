@@ -4,6 +4,7 @@ import colors from 'colors';
 import { readFile } from 'fs/promises';
 import connectDb from './config/dbConfig.js';
 import assetsRoutes from './routes/assetsRoutes.js';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 const app = express();
 dotenv.config();
@@ -14,6 +15,9 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/assets', assetsRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT;
 

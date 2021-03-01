@@ -21,14 +21,13 @@ assetsRoutes.get(
 assetsRoutes.get(
   '/:dlink',
   asyncHandler(async (req, res) => {
-    const assets1 = await assetsModel.find({});
-
     const asset = await assetsModel.findOne({ link: `${req.params.dlink}` });
 
     if (asset) {
       res.send(asset);
     } else {
-      res.status(404).json({ message: 'Asset not found!' });
+      res.status(404);
+      throw Error('Asset Not Found!');
     }
   })
 );
