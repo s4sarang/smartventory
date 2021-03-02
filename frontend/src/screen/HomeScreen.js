@@ -21,7 +21,7 @@ const HomeScreen = () => {
       <Container>
         <Row>
           {Assets.map((display) => (
-            <Col key={display.id} sm={12} md={6} lg={4} xl={3}>
+            <Col key={display.link} sm={12} md={6} lg={4} xl={3}>
               <AssetsComponent display={display} />
             </Col>
           ))}
