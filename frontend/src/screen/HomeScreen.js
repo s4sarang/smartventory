@@ -1,32 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import AssetsComponent from '../components/Assets';
 import { Container, Col, Row } from 'react-bootstrap';
+import { listAssets } from '../actions/assetActions';
+
 const HomeScreen = () => {
-  const [Assets, setAssets] = useState([]);
+  const dispatch = useDispatch();
+  const assetList = useSelector((state) => state.assetList);
+  const { loading, error, assets } = assetList;
 
   useEffect(() => {
-    const fetchAssets = async () => {
-      const { data } = await axios.get('/api/assets');
-
-      setAssets(data);
-    };
-
-    fetchAssets();
-  }, []);
+    dispatch(listAssets());
+  }, [dispatch]);
 
   return (
     <>
       <h1>Welcome to SmartVentory!</h1>
-      <Container>
-        <Row>
-          {Assets.map((display) => (
-            <Col key={display.link} sm={12} md={6} lg={4} xl={3}>
-              <AssetsComponent display={display} />
-            </Col>
-          ))}
-        </Row>
-      </Container>
+      {loading ? (
+        <h2>Loading..</h2>
+      ) : error ? (
+        <h2>{error}</h2>
+      ) : (
+        <Container>
+          <Row>
+            {assets.map((display) => (
+              <Col key={display.link} sm={12} md={6} lg={4} xl={3}>
+                <AssetsComponent display={display} />
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      )}
     </>
   );
 };
