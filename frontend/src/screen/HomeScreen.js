@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import AssetsComponent from '../components/Assets';
 import { Container, Col, Row } from 'react-bootstrap';
 import { listAssets } from '../actions/assetActions';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -17,9 +19,9 @@ const HomeScreen = () => {
     <>
       <h1>Welcome to SmartVentory!</h1>
       {loading ? (
-        <h2>Loading..</h2>
+        <Loader />
       ) : error ? (
-        <h2>{error}</h2>
+        <Message variant='danger'>{error}</Message>
       ) : (
         <Container>
           <Row>
