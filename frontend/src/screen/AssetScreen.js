@@ -1,21 +1,18 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ListGroup, Col, Row, Button, Image } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { listAssetDetails } from '../actions/assetActions';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const AssetScreen = ({ match }) => {
-  const [asset, setAssets] = useState({});
-
+  const dispatch = useDispatch();
+  const assetDetails = useSelector((state) => state.assetDetails);
+  const { asset, loading, error } = assetDetails;
   useEffect(() => {
-    const fetchAssets = async () => {
-      const { data } = await axios.get(`/api/assets/${match.params.dlink}`);
-
-      setAssets(data);
-    };
-
-    fetchAssets();
-  }, [match]);
-
+    dispatch(listAssetDetails(match.params.dlink));
+  }, [dispatch, match]);
   return (
     <>
       <LinkContainer to='/'>
@@ -23,31 +20,37 @@ const AssetScreen = ({ match }) => {
           Back
         </Button>
       </LinkContainer>
-      <Row>
-        <Col xs={6} md={4}>
-          <Image src={asset.path} rounded />
-        </Col>
-        <Col xs={6} md={4}>
-          <ListGroup>
-            <ListGroup.Item variant='success'>
-              Brand : {asset.brand}
-            </ListGroup.Item>
-            <ListGroup.Item variant='light'>
-              Model : {asset.model}
-            </ListGroup.Item>
-            <ListGroup.Item variant='success'>
-              Launch Year : {asset.launch}
-            </ListGroup.Item>
-            <ListGroup.Item variant='light'>
-              Price : {asset.price}
-            </ListGroup.Item>
-            <ListGroup.Item variant='success'>
-              Category : {asset.category}
-            </ListGroup.Item>
-          </ListGroup>
-        </Col>
-        <Col xs={6} md={4}></Col>
-      </Row>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant='danger'>{error}</Message>
+      ) : (
+        <Row>
+          <Col xs={6} md={4}>
+            <Image src={asset.path} rounded />
+          </Col>
+          <Col xs={6} md={4}>
+            <ListGroup>
+              <ListGroup.Item variant='success'>
+                Brand : {asset.brand}
+              </ListGroup.Item>
+              <ListGroup.Item variant='light'>
+                Model : {asset.model}
+              </ListGroup.Item>
+              <ListGroup.Item variant='success'>
+                Launch Year : {asset.launch}
+              </ListGroup.Item>
+              <ListGroup.Item variant='light'>
+                Price : {asset.price}
+              </ListGroup.Item>
+              <ListGroup.Item variant='success'>
+                Category : {asset.category}
+              </ListGroup.Item>
+            </ListGroup>
+          </Col>
+          <Col xs={6} md={4}></Col>
+        </Row>
+      )}
 
       {/* <ListGroup className='my-3'>
         <ListGroup.Item>IMEI:</ListGroup.Item>
