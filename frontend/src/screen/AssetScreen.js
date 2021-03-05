@@ -7,6 +7,9 @@ import {
   Button,
   Image,
   ListGroupItem,
+  Form,
+  FormGroup,
+  FormControl,
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { listAssetDetails } from '../actions/assetActions';
@@ -37,27 +40,67 @@ const AssetScreen = ({ match }) => {
             <Image src={asset.path} rounded />
           </Col>
           <Col xs={6} md={4}>
-            <ListGroup>
-              <ListGroup.Item variant='light'>
-                Brand : {asset.brand}
+            <ListGroup variant='flush'>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Brand:</Col>
+                  {asset.brand}
+                  <Col></Col>
+                </Row>
               </ListGroup.Item>
-              <ListGroup.Item variant='success'>
-                Model : {asset.model}
+              <ListGroup.Item>
+                <Row>
+                  <Col>Model:</Col>
+                  {asset.model}
+                  <Col></Col>
+                </Row>
               </ListGroup.Item>
-              <ListGroup.Item variant='light'>
-                Launch Year : {asset.launch}
+              <ListGroup.Item>
+                <Row>
+                  <Col>Launch Year:</Col>
+                  {asset.launch}
+                  <Col></Col>
+                </Row>
               </ListGroup.Item>
-              <ListGroup.Item variant='success'>
-                Category : {asset.category}
+              <ListGroup.Item>
+                <Row>
+                  <Col>Category:</Col>
+                  {asset.category}
+                  <Col></Col>
+                </Row>
               </ListGroup.Item>
             </ListGroup>
           </Col>
-          <Col xs={6} md={2}>
-            <ListGroup>
-              <ListGroupItem>Price: {asset.price}</ListGroupItem>
-              <ListGroupItem>Stock: {asset.count}</ListGroupItem>
-              <Button className='my-3' variant='secondary'>
-                Add to cart
+          <Col xs={6} md={3}>
+            <ListGroup variant='flush'>
+              <ListGroupItem>
+                <Row>
+                  <Col>Price:</Col> <Col>{asset.price}</Col>
+                </Row>
+              </ListGroupItem>
+              <ListGroupItem>
+                <Row>
+                  <Col>Status:</Col>
+                  <Col>{asset.count > 0 ? 'In Stock' : 'Out of stock'}</Col>
+                </Row>
+              </ListGroupItem>
+              {asset.count > 0 && (
+                <ListGroupItem>
+                  <FormGroup>
+                    <FormControl size='sm' as='select'>
+                      {asset.map((qty) => (
+                        <option>{qty.count}</option>
+                      ))}
+                    </FormControl>
+                  </FormGroup>
+                </ListGroupItem>
+              )}
+              <Button
+                className='my-3'
+                variant='secondary'
+                disabled={asset.count > 0 ? false : true}
+              >
+                Request
               </Button>
             </ListGroup>
           </Col>
