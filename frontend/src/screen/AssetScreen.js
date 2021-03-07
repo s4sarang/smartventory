@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   ListGroup,
@@ -17,6 +17,8 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 
 const AssetScreen = ({ match }) => {
+  const [qty, setQty] = useState(0);
+
   const dispatch = useDispatch();
   const assetDetails = useSelector((state) => state.assetDetails);
   const { asset, loading, error } = assetDetails;
@@ -86,13 +88,25 @@ const AssetScreen = ({ match }) => {
               </ListGroupItem>
               {asset.count > 0 && (
                 <ListGroupItem>
-                  <FormGroup>
-                    <FormControl size='sm' as='select'>
-                      {asset.map((qty) => (
-                        <option>{qty.count}</option>
-                      ))}
-                    </FormControl>
-                  </FormGroup>
+                  <Row>
+                    <Col>Qty:</Col>
+                    <Col>
+                      <FormGroup>
+                        <FormControl
+                          size='sm'
+                          as='select'
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        >
+                          {[...Array(asset.count).keys()].map((x) => (
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
+                          ))}
+                        </FormControl>
+                      </FormGroup>
+                    </Col>
+                  </Row>
                 </ListGroupItem>
               )}
               <Button
