@@ -12,9 +12,14 @@ class Header extends Component {
               <Navbar.Brand>SmartVentory</Navbar.Brand>
             </LinkContainer>
             <Nav className='mr-auto'>
-              <LinkContainer to='/assets'>
+              <LinkContainer to='/myassets'>
                 <Nav.Link>
-                  <i className='zmdi zmdi-smartphone-setup'></i> Assets
+                  <i className='zmdi zmdi-smartphone-setup'></i> MyAssets
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to='/requests'>
+                <Nav.Link>
+                  <i className='zmdi zmdi-shopping-cart'></i> Requests
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to='/procurement'>

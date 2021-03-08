@@ -7,7 +7,6 @@ import {
   Button,
   Image,
   ListGroupItem,
-  Form,
   FormGroup,
   FormControl,
 } from 'react-bootstrap';
@@ -16,7 +15,7 @@ import { listAssetDetails } from '../actions/assetActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
-const AssetScreen = ({ match }) => {
+const AssetScreen = ({ history, match }) => {
   const [qty, setQty] = useState(0);
 
   const dispatch = useDispatch();
@@ -25,6 +24,11 @@ const AssetScreen = ({ match }) => {
   useEffect(() => {
     dispatch(listAssetDetails(match.params.dlink));
   }, [dispatch, match]);
+
+  const requestButtonHandler = () => {
+    history.push(`/requests/${match.params.dlink}?qty=${qty}`);
+  };
+
   return (
     <>
       <LinkContainer to='/'>
@@ -110,6 +114,7 @@ const AssetScreen = ({ match }) => {
                 </ListGroupItem>
               )}
               <Button
+                onClick={requestButtonHandler}
                 className='my-3'
                 variant='secondary'
                 disabled={asset.count > 0 ? false : true}
