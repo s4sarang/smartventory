@@ -17,7 +17,7 @@ class App extends Component {
           <Container>
             <Route path='/' component={HomeScreen} exact />
             <Route path='/assets/:dlink' component={AssetScreen} />
-            <Route path='/requests/:dlink?' component={RequestsScreen} />
+            <Route path='/requests/:count?' component={RequestsScreen} />
           </Container>
         </main>
         <Footer />
