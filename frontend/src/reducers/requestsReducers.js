@@ -8,13 +8,13 @@ export const requestsReducer = (state = { requestsItems: [] }, action) => {
     case REQUESTS_ADD_ITEM:
       const item = action.payload;
 
-      const existItem = state.requestsItems.find((x) => x.asset === item.asset);
+      const existItem = state.requestsItems.find((x) => x.link === item.link);
 
       if (existItem) {
         return {
           ...state,
           requestsItems: state.requestsItems.map((x) =>
-            x.asset === existItem.asset ? item : x
+            x.link === existItem.link ? item : x
           ),
         };
       } else {

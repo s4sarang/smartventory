@@ -15,7 +15,7 @@ const reducer = combineReducers({
 
 const requestsItemsFromStorage = localStorage.getItem('requestsItems')
   ? JSON.parse(localStorage.getItem('requestsItems'))
-  : ['No Item: Error'];
+  : [];
 
 const initialState = {
   requests: { requestsItems: requestsItemsFromStorage },

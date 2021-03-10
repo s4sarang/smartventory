@@ -6,7 +6,7 @@ export const raiseRequests = (dlink, qty) => async (dispatch, getState) => {
   dispatch({
     type: REQUESTS_ADD_ITEM,
     payload: {
-      asset: data.link,
+      link: data.link,
       name: `${(data.brand, data.model)}`,
       image: data.path,
       price: data.price,
