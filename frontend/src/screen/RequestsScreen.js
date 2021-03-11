@@ -10,6 +10,7 @@ import {
   FormGroup,
   FormControl,
   Button,
+  Badge,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { raiseRequests, removeRequests } from '../actions/requestsActions';
@@ -64,7 +65,7 @@ const RequestsScreen = ({ match, location, history }) => {
                     <Col md={3}>
                       <Link to={`/assets/${item.link}`}>{item.name}</Link>
                     </Col>
-                    <Col md={2}>{item.price}</Col>
+                    <Col md={2}>₹{item.price}</Col>
                     <Col md={2}>
                       <FormGroup>
                         <FormControl
@@ -107,11 +108,15 @@ const RequestsScreen = ({ match, location, history }) => {
                 Subtotal (
                 {requestsItems.reduce((acc, item) => acc + item.qty, 0)}) items.
               </h2>
-              Rs.
-              {requestsItems.reduce(
-                (acc, item) => acc + item.qty * item.price,
-                0
-              )}
+              <h5>
+                <Badge variant='light'>
+                  Total Amount: ₹
+                  {requestsItems.reduce(
+                    (acc, item) => acc + item.qty * item.price,
+                    0
+                  )}
+                </Badge>
+              </h5>
             </ListGroup.Item>
             <ListGroup.Item>
               <Button

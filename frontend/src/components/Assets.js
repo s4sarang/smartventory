@@ -31,7 +31,7 @@ const Assets = ({ display }) => {
         </Link>
         <Card.Text as='div'>
           <div className='my-2'>
-            This device was launched in {display.launch} and purchased at Rs.
+            This device was launched in {display.launch} and purchased at ₹
             {display.price}/-
           </div>
         </Card.Text>

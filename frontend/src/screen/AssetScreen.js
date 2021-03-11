@@ -81,7 +81,7 @@ const AssetScreen = ({ history, match }) => {
             <ListGroup variant='flush'>
               <ListGroupItem>
                 <Row>
-                  <Col>Price:</Col> <Col>{asset.price}</Col>
+                  <Col>Price:</Col> <Col>₹{asset.price}</Col>
                 </Row>
               </ListGroupItem>
               <ListGroupItem>
