@@ -23,7 +23,13 @@ export const requestsReducer = (state = { requestsItems: [] }, action) => {
           requestsItems: [...state.requestsItems, item],
         };
       }
-
+    case REQUESTS_REMOVE_ITEM:
+      return {
+        ...state,
+        requestsItems: state.requestsItems.filter(
+          (x) => x.link !== action.payload
+        ),
+      };
     default:
       return state;
   }

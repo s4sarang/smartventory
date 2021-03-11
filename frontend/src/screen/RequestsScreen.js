@@ -12,7 +12,7 @@ import {
   Button,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { raiseRequests } from '../actions/requestsActions';
+import { raiseRequests, removeRequests } from '../actions/requestsActions';
 import Message from '../components/Message';
 
 const RequestsScreen = ({ match, location, history }) => {
@@ -26,7 +26,7 @@ const RequestsScreen = ({ match, location, history }) => {
   const qty = location.search ? Number(location.search.split('=')[1]) : 1;
 
   const removeRequestsHandler = (link) => {
-    console.log(`${link} removed!`);
+    dispatch(removeRequests(link));
   };
 
   const sendHandler = () => {
@@ -100,29 +100,31 @@ const RequestsScreen = ({ match, location, history }) => {
             </ListGroup>
           )}
         </Col>
-        <Col md={4}>
-          <ListGroup.Item>
-            <h2>
-              Subtotal ({requestsItems.reduce((acc, item) => acc + item.qty, 0)}
-              ) items.
-            </h2>
-            Rs.
-            {requestsItems.reduce(
-              (acc, item) => acc + item.qty * item.price,
-              0
-            )}
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <Button
-              type='button'
-              className='btn-block'
-              variant='outline-primary'
-              onClick={sendHandler}
-              disabled={requestsItems === 0}
-            >
-              Send Request
-            </Button>
-          </ListGroup.Item>
+        <Col md={3}>
+          <ListGroup variant='flush'>
+            <ListGroup.Item>
+              <h2>
+                Subtotal (
+                {requestsItems.reduce((acc, item) => acc + item.qty, 0)}) items.
+              </h2>
+              Rs.
+              {requestsItems.reduce(
+                (acc, item) => acc + item.qty * item.price,
+                0
+              )}
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Button
+                type='button'
+                className='btn-block'
+                variant='outline-primary'
+                onClick={sendHandler}
+                disabled={requestsItems === 0}
+              >
+                Send Request
+              </Button>
+            </ListGroup.Item>
+          </ListGroup>
         </Col>
       </Row>
     </>

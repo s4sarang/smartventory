@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { REQUESTS_ADD_ITEM } from '../constants/requestsConstants';
+import {
+  REQUESTS_ADD_ITEM,
+  REQUESTS_REMOVE_ITEM,
+} from '../constants/requestsConstants';
 
 export const raiseRequests = (dlink, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/assets/${dlink}`);
@@ -13,6 +16,18 @@ export const raiseRequests = (dlink, qty) => async (dispatch, getState) => {
       count: data.count,
       qty,
     },
+  });
+
+  localStorage.setItem(
+    'requestsItems',
+    JSON.stringify(getState().requests.requestsItems)
+  );
+};
+
+export const removeRequests = (link) => (dispatch, getState) => {
+  dispatch({
+    type: REQUESTS_REMOVE_ITEM,
+    payload: link,
   });
 
   localStorage.setItem(
