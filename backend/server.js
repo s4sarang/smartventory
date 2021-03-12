@@ -4,6 +4,7 @@ import colors from 'colors';
 import { readFile } from 'fs/promises';
 import connectDb from './config/dbConfig.js';
 import assetsRoutes from './routes/assetsRoutes.js';
+import usersRoutes from './routes/usersRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 const app = express();
@@ -14,6 +15,9 @@ app.get('/', (req, res) => {
   res.send('APIs are running');
 });
 
+app.use(express.json());
+
+app.use('/api/users', usersRoutes);
 app.use('/api/assets', assetsRoutes);
 
 app.use(notFound);

@@ -8,9 +8,7 @@ import { readFile } from 'fs/promises';
 const assets = JSON.parse(
   await readFile(new URL('./data/assets.json', import.meta.url))
 );
-const users = JSON.parse(
-  await readFile(new URL('./data/users.json', import.meta.url))
-);
+import users from './data/users.js';
 
 dotenv.config();
 connectDb();
