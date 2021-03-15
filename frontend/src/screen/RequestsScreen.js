@@ -4,8 +4,6 @@ import {
   Row,
   Col,
   Image,
-  Card,
-  Form,
   ListGroup,
   FormGroup,
   FormControl,
