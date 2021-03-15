@@ -24,6 +24,35 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
+//@desc Register user
+//@route POST /api/users
+//@access Public
+const registerUser = asyncHandler(async (req, res) => {
+  const { userName, emailId, team, password } = req.body;
+
+  const userExists = await User.findOne({ userName });
+
+  if (userExists) {
+    res.status(400);
+    throw new Error('User already exists!');
+  }
+
+  const user = await User.create({ userName, emailId, password, team });
+
+  if (user) {
+    res.status(201).json({
+      userName: user.userName,
+      // name: user.name;
+      emailId: user.emailId,
+      isAdmin: user.isAdmin,
+      token: generateToken(user.userName),
+    });
+  } else {
+    res.status(401);
+    throw new Error('Invalid Username, Email ID or Password!');
+  }
+});
+
 //@desc Get user profile
 //@route GET /api/users/profile
 //@access Private
@@ -36,10 +65,11 @@ const getUser = asyncHandler(async (req, res) => {
       // name: user.name;
       emailId: user.emailId,
       isAdmin: user.isAdmin,
+      team: user.team,
     });
   } else {
     res.status(404);
     throw new Error('User not found!');
   }
 });
-export { authUser, getUser };
+export { authUser, registerUser, getUser };
