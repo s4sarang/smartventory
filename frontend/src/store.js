@@ -6,13 +6,14 @@ import {
   assetDetailsReducers,
 } from './reducers/assetReducers';
 import { requestsReducer } from './reducers/requestsReducers';
-import { userLoginReducer } from './reducers/userReducers';
+import { userLoginReducer, userRegisterReducer } from './reducers/userReducers';
 
 const reducer = combineReducers({
   assetList: assetListReducers,
   assetDetails: assetDetailsReducers,
   requests: requestsReducer,
   userLogin: userLoginReducer,
+  userRegister: userRegisterReducer,
 });
 
 const requestsItemsFromStorage = localStorage.getItem('requestsItems')

@@ -6,6 +6,7 @@ import HomeScreen from './screen/HomeScreen';
 import AssetScreen from './screen/AssetScreen';
 import RequestsScreen from './screen/RequestsScreen';
 import LoginScreen from './screen/LoginScreen';
+import RegisterScreen from './screen/RegisterScreen';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
           <Container>
             <Route path='/' component={HomeScreen} exact />
             <Route path='/login' component={LoginScreen} />
+            <Route path='/register' component={RegisterScreen} />
             <Route path='/assets/:dlink' component={AssetScreen} />
             <Route path='/requests/:dlink?' component={RequestsScreen} />
           </Container>
