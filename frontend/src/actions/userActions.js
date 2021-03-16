@@ -6,7 +6,7 @@ import {
   USER_LOGOUT,
 } from '../constants/userConstants';
 
-const login = (userName, password) => async (dispatch) => {
+export const login = (userName, password) => async (dispatch) => {
   try {
     dispatch({
       type: USER_LOGIN_REQUEST,
@@ -41,4 +41,8 @@ const login = (userName, password) => async (dispatch) => {
   }
 };
 
-export default login;
+export const logout = () => async (dispatch) => {
+  localStorage.removeItem('userInfo');
+
+  dispatch({ type: USER_LOGOUT });
+};
