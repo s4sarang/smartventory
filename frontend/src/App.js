@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap';
 import HomeScreen from './screen/HomeScreen';
 import AssetScreen from './screen/AssetScreen';
 import RequestsScreen from './screen/RequestsScreen';
+import LoginScreen from './screen/LoginScreen';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
         <main>
           <Container>
             <Route path='/' component={HomeScreen} exact />
+            <Route path='/login' component={LoginScreen} />
             <Route path='/assets/:dlink' component={AssetScreen} />
             <Route path='/requests/:dlink?' component={RequestsScreen} />
           </Container>

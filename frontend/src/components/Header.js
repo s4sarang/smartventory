@@ -34,9 +34,9 @@ class Header extends Component {
                   <i className='zmdi zmdi-trending-up'></i> What's new!
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/user'>
+              <LinkContainer to='/login'>
                 <Nav.Link>
-                  <i className='zmdi zmdi-account'></i> User
+                  <i className='zmdi zmdi-account'></i> Sign In
                 </Nav.Link>
               </LinkContainer>
             </Nav>
