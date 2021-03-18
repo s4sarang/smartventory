@@ -72,4 +72,32 @@ const getUser = asyncHandler(async (req, res) => {
     throw new Error('User not found!');
   }
 });
-export { authUser, registerUser, getUser };
+
+//@desc Update user profile
+//@route PUT /api/users/profile
+//@access Private
+const updateUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findOne({ userName: req.user.userName });
+
+  if (user) {
+    user.userName = req.body.userName || user.userName;
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      userName: updatedUser.userName,
+      // name: updatedUser.name;
+      emailId: updatedUser.emailId,
+      isAdmin: updatedUser.isAdmin,
+      token: generateToken(updatedUser.userName),
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found!');
+  }
+});
+
+export { authUser, registerUser, getUser, updateUserProfile };
