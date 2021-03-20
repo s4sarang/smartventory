@@ -6,7 +6,11 @@ import {
   assetDetailsReducers,
 } from './reducers/assetReducers';
 import { requestsReducer } from './reducers/requestsReducers';
-import { userLoginReducer, userRegisterReducer } from './reducers/userReducers';
+import {
+  userLoginReducer,
+  userRegisterReducer,
+  userDetailsReducer,
+} from './reducers/userReducers';
 
 const reducer = combineReducers({
   assetList: assetListReducers,
@@ -14,6 +18,7 @@ const reducer = combineReducers({
   requests: requestsReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
+  userDetails: userDetailsReducer,
 });
 
 const requestsItemsFromStorage = localStorage.getItem('requestsItems')
