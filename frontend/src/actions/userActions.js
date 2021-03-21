@@ -101,14 +101,20 @@ export const getUserDetails = (userName) => async (dispatch, getState) => {
       type: USER_DETAILS_REQUEST,
     });
 
+    if (userName === 'logout') {
+      dispatch({
+        type: USER_DETAILS_REQUEST,
+      });
+    }
+
     const {
-      userLogin: { usreInfo },
+      userLogin: { userInfo },
     } = getState();
 
     const config = {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${usreInfo.token}`,
+        Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
