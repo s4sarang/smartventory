@@ -97,6 +97,8 @@ export const logout = () => async (dispatch) => {
   localStorage.removeItem('userInfo');
 
   dispatch({ type: USER_LOGOUT });
+
+  document.location.href = '/login';
 };
 
 export const getUserDetails = (userName) => async (dispatch, getState) => {
@@ -104,12 +106,6 @@ export const getUserDetails = (userName) => async (dispatch, getState) => {
     dispatch({
       type: USER_DETAILS_REQUEST,
     });
-
-    if (userName === 'logout') {
-      dispatch({
-        type: USER_DETAILS_REQUEST,
-      });
-    }
 
     const {
       userLogin: { userInfo },
@@ -139,7 +135,7 @@ export const getUserDetails = (userName) => async (dispatch, getState) => {
   }
 };
 
-export const updateUserDetails = (user) => async (dispatch, getState) => {
+export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {
     dispatch({
       type: USER_UPDATE_PROFILE_REQUEST,
