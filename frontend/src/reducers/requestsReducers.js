@@ -1,9 +1,13 @@
 import {
   REQUESTS_ADD_ITEM,
   REQUESTS_REMOVE_ITEM,
+  REQUESTS_SHIPPING_ADDRESS,
 } from '../constants/requestsConstants';
 
-export const requestsReducer = (state = { requestsItems: [] }, action) => {
+export const requestsReducer = (
+  state = { requestsItems: [], shippingAddress: {} },
+  action
+) => {
   switch (action.type) {
     case REQUESTS_ADD_ITEM:
       const item = action.payload;
@@ -29,6 +33,11 @@ export const requestsReducer = (state = { requestsItems: [] }, action) => {
         requestsItems: state.requestsItems.filter(
           (x) => x.link !== action.payload
         ),
+      };
+    case REQUESTS_SHIPPING_ADDRESS:
+      return {
+        ...state,
+        shippingAddress: action.payload,
       };
     default:
       return state;

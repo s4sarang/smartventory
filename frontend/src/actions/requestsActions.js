@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   REQUESTS_ADD_ITEM,
   REQUESTS_REMOVE_ITEM,
+  REQUESTS_SHIPPING_ADDRESS,
 } from '../constants/requestsConstants';
 
 export const raiseRequests = (dlink, qty) => async (dispatch, getState) => {
@@ -34,4 +35,13 @@ export const removeRequests = (link) => (dispatch, getState) => {
     'requestsItems',
     JSON.stringify(getState().requests.requestsItems)
   );
+};
+
+export const saveShippingAddress = (data) => (dispatch) => {
+  dispatch({
+    type: REQUESTS_SHIPPING_ADDRESS,
+    payload: data,
+  });
+
+  localStorage.setItem('shippingAddress', JSON.stringify(data));
 };
