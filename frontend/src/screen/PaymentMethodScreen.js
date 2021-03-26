@@ -43,6 +43,8 @@ const PaymentMethod = ({ history }) => {
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>
 
+            {/*
+            UPI Payment method will be added in future.
             <Form.Check
               type='radio'
               label='UPI'
@@ -50,7 +52,7 @@ const PaymentMethod = ({ history }) => {
               name='upi'
               value='Upi'
               onChange={(e) => setPaymentMethod(e.target.value)}
-            ></Form.Check>
+            ></Form.Check> */}
           </Col>
         </Form.Group>
         <Button type='submit' variant='primary'>
