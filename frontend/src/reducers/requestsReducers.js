@@ -2,6 +2,7 @@ import {
   REQUESTS_ADD_ITEM,
   REQUESTS_REMOVE_ITEM,
   REQUESTS_SHIPPING_ADDRESS,
+  REQUESTS_PAYMENT_METHOD,
 } from '../constants/requestsConstants';
 
 export const requestsReducer = (
@@ -38,6 +39,11 @@ export const requestsReducer = (
       return {
         ...state,
         shippingAddress: action.payload,
+      };
+    case REQUESTS_PAYMENT_METHOD:
+      return {
+        ...state,
+        paymentMethod: action.payload,
       };
     default:
       return state;

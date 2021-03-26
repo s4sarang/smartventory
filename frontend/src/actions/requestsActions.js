@@ -3,6 +3,7 @@ import {
   REQUESTS_ADD_ITEM,
   REQUESTS_REMOVE_ITEM,
   REQUESTS_SHIPPING_ADDRESS,
+  REQUESTS_PAYMENT_METHOD,
 } from '../constants/requestsConstants';
 
 export const raiseRequests = (dlink, qty) => async (dispatch, getState) => {
@@ -44,4 +45,13 @@ export const saveShippingAddress = (data) => (dispatch) => {
   });
 
   localStorage.setItem('shippingAddress', JSON.stringify(data));
+};
+
+export const savePaymentMethod = (data) => (dispatch) => {
+  dispatch({
+    type: REQUESTS_PAYMENT_METHOD,
+    payload: data,
+  });
+
+  localStorage.setItem('paymentMethod', JSON.stringify(data));
 };
