@@ -16,6 +16,11 @@ import CheckOutSteps from '../components/CheckoutSteps';
 const PlaceOrderScreen = () => {
   const requests = useSelector((state) => state.requests);
 
+  const totalPrice = requests.requestsItems.reduce(
+    (acc, item) => acc + item.qty * item.price,
+    0
+  );
+
   const placeOrderHandler = () => {
     console.log('order');
   };
@@ -89,13 +94,7 @@ const PlaceOrderScreen = () => {
                 ) items.
               </h2>
               <h5>
-                <Badge variant='light'>
-                  Total Amount: ₹
-                  {requests.requestsItems.reduce(
-                    (acc, item) => acc + item.qty * item.price,
-                    0
-                  )}
-                </Badge>
+                <Badge variant='light'>Total Amount: ₹{totalPrice}</Badge>
               </h5>
             </ListGroup.Item>
             <ListGroup.Item>

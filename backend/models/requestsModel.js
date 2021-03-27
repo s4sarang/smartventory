@@ -1,12 +1,12 @@
-import mongoose, { Mongoose } from 'mongoose';
+import mongoose from 'mongoose';
 
 const requestsSchema = mongoose.Schema(
   {
     user: {
-      type: Mongoose.Schema.types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'User',
-      unique: true,
+      unique: false,
     },
     requestsItems: [
       {
@@ -17,7 +17,7 @@ const requestsSchema = mongoose.Schema(
         count: { type: Number, required: true },
         qty: { type: Number, required: true },
         asset: {
-          type: Mongoose.Schema.types.ObjectId,
+          type: mongoose.Schema.Types.ObjectId,
           required: true,
           ref: 'Assets',
         },
