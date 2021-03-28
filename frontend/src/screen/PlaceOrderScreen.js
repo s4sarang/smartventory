@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Button,
   Row,
@@ -12,17 +12,39 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Message from '../components/Message';
 import CheckOutSteps from '../components/CheckoutSteps';
+import { createOrder } from '../actions/orderActions';
 
-const PlaceOrderScreen = () => {
+const PlaceOrderScreen = ({ history }) => {
+  const dispatch = useDispatch();
+
   const requests = useSelector((state) => state.requests);
 
-  const totalPrice = requests.requestsItems.reduce(
+  requests.totalPrice = requests.requestsItems.reduce(
     (acc, item) => acc + item.qty * item.price,
     0
   );
 
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { error, success, order } = orderCreate;
+
+  useEffect(() => {
+    if (success) {
+      history.push(`/order/${order._id}`);
+    }
+
+    console.log(requests.requestsItems);
+    // eslint-disable-next-line
+  }, [success, history]);
+
   const placeOrderHandler = () => {
-    console.log('order');
+    dispatch(
+      createOrder({
+        requestsItems: requests.requestsItems,
+        shippingAddress: requests.shippingAddress,
+        paymentMethod: requests.paymentMethod,
+        totalPrice: requests.totalPrice,
+      })
+    );
   };
 
   return (
@@ -94,8 +116,13 @@ const PlaceOrderScreen = () => {
                 ) items.
               </h2>
               <h5>
-                <Badge variant='light'>Total Amount: ₹{totalPrice}</Badge>
+                <Badge variant='light'>
+                  Total Amount: ₹{requests.totalPrice}
+                </Badge>
               </h5>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              {error && <Message variant='danger'>{error}</Message>}
             </ListGroup.Item>
             <ListGroup.Item>
               <Button

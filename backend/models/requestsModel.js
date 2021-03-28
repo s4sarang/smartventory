@@ -3,24 +3,18 @@ import mongoose from 'mongoose';
 const requestsSchema = mongoose.Schema(
   {
     user: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       required: true,
       ref: 'User',
-      unique: false,
     },
     requestsItems: [
       {
         link: { type: String, required: true },
         name: { type: String, required: true },
         image: { type: String, required: true },
-        price: { type: Number, required: true },
-        count: { type: Number, required: true },
-        qty: { type: Number, required: true },
-        asset: {
-          type: mongoose.Schema.Types.ObjectId,
-          required: true,
-          ref: 'Assets',
-        },
+        price: { type: String, required: true },
+        count: { type: String, required: true },
+        qty: { type: String, required: true },
       },
     ],
     shippingAddress: {

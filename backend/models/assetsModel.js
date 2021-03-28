@@ -6,7 +6,6 @@ const assetsSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'User',
-      unique: false,
     },
     link: {
       type: String,

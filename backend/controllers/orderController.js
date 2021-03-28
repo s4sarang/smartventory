@@ -1,10 +1,10 @@
 import asyncHandler from 'express-async-handler';
 import Requests from '../models/requestsModel.js';
 
-//@desc Create new request
-//@route POST /api/requests
+//@desc Create new order
+//@route POST /api/orders
 //@access Private
-const addRequestsItems = asyncHandler(async (req, res) => {
+const addOrderItems = asyncHandler(async (req, res) => {
   const {
     requestsItems,
     shippingAddress,
@@ -25,9 +25,9 @@ const addRequestsItems = asyncHandler(async (req, res) => {
       totalPrice,
     });
 
-    const createdRequests = await request.save();
-    res.status(200).json(createdRequests);
+    const createdOrders = await request.save();
+    res.status(201).json(createdOrders);
   }
 });
 
-export { addRequestsItems };
+export { addOrderItems };

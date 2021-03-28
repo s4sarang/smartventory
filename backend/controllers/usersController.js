@@ -12,6 +12,7 @@ const authUser = asyncHandler(async (req, res) => {
 
   if (user && (await user.matchPassword(password))) {
     res.json({
+      userId: user._id,
       userName: user.userName,
       // name: user.name;
       emailId: user.emailId,
@@ -41,6 +42,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (user) {
     res.status(201).json({
+      userId: user._id,
       userName: user.userName,
       // name: user.name;
       emailId: user.emailId,
@@ -61,6 +63,7 @@ const getUser = asyncHandler(async (req, res) => {
 
   if (user) {
     res.json({
+      userId: user._id,
       userName: user.userName,
       // name: user.name;
       emailId: user.emailId,
@@ -88,6 +91,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const updatedUser = await user.save();
 
     res.json({
+      userId: user._id,
       userName: updatedUser.userName,
       // name: updatedUser.name;
       emailId: updatedUser.emailId,
