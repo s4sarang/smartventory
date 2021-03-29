@@ -11,6 +11,7 @@ import ProfileScreen from './screen/ProfileScreen';
 import ShippingScreen from './screen/ShippingScreen';
 import PaymentMethodScreen from './screen/PaymentMethodScreen';
 import PlaceOrderScreen from './screen/PlaceOrderScreen';
+import OrderScreen from './screen/OrderScreen';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
             <Route path='/shipping' component={ShippingScreen} />
             <Route path='/payment' component={PaymentMethodScreen} />
             <Route path='/placeorder' component={PlaceOrderScreen} />
+            <Route path='/order/:id' component={OrderScreen} />
             <Route path='/register' component={RegisterScreen} />
             <Route path='/profile' component={ProfileScreen} />
             <Route path='/assets/:dlink' component={AssetScreen} />

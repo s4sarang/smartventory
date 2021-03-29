@@ -1,13 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  Button,
-  Row,
-  Col,
-  Card,
-  ListGroup,
-  Image,
-  Badge,
-} from 'react-bootstrap';
+import { Button, Row, Col, ListGroup, Image, Badge } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Message from '../components/Message';

@@ -28,6 +28,10 @@ const requestsSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    totalPrice: {
+      type: Number,
+      required: true,
+    },
     paymentResult: {
       id: { type: String },
       status: { type: String },
