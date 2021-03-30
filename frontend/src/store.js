@@ -4,6 +4,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import {
   assetListReducers,
   assetDetailsReducers,
+  assetDeleteReducers,
+  assetCreateReducers,
+  assetUpdateReducers,
 } from './reducers/assetReducers';
 import { requestsReducer } from './reducers/requestsReducers';
 import {
@@ -13,6 +16,7 @@ import {
   userUpdateProfileReducer,
   userListReducer,
   userDeleteReducer,
+  userUpdateReducer,
 } from './reducers/userReducers';
 import {
   orderCreateReducer,
@@ -24,6 +28,9 @@ import {
 const reducer = combineReducers({
   assetList: assetListReducers,
   assetDetails: assetDetailsReducers,
+  assetDelete: assetDeleteReducers,
+  assetCreate: assetCreateReducers,
+  assetUpdate: assetUpdateReducers,
   requests: requestsReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
@@ -31,6 +38,7 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   userList: userListReducer,
   userDelete: userDeleteReducer,
+  userUpdate: userUpdateReducer,
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,

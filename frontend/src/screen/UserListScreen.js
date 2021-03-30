@@ -47,7 +47,7 @@ const UserListScreen = ({ history }) => {
               <th>ID</th>
               <th>USERNAME</th>
               <th>EMAIL ID</th>
-              <th>EMAIL ID</th>
+              <th>TEAM</th>
               <th>ADMIN</th>
               <th>OPTION</th>
             </tr>
@@ -72,7 +72,7 @@ const UserListScreen = ({ history }) => {
                   )}
                 </td>
                 <td>
-                  <LinkContainer to={`/user/${user._id}/edit`}>
+                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
                     <Button variant='warning' className='btn-sm'>
                       <i className='zmdi zmdi-edit'></i>
                     </Button>
