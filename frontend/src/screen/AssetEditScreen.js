@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -19,6 +20,7 @@ const AssetEditScreen = ({ match, history }) => {
   const [launch, setlaunch] = useState(0);
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState('');
+  const [uploading, setUploading] = useState(false);
 
   const assetDetails = useSelector((state) => state.assetDetails);
   const { loading, error, asset } = assetDetails;
@@ -51,6 +53,29 @@ const AssetEditScreen = ({ match, history }) => {
       }
     }
   }, [history, dispatch, asset, assetLink, successUpdate]);
+
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    const formData = new FormData();
+    formData.append('image', file);
+    setUploading(true);
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      };
+
+      const { data } = await axios.post('/api/upload', formData, config);
+
+      setPath(data);
+      setUploading(false);
+    } catch (error) {
+      console.error(error);
+      setUploading(false);
+    }
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -128,6 +153,14 @@ const AssetEditScreen = ({ match, history }) => {
                 value={path}
                 onChange={(e) => setPath(e.target.value)}
               ></Form.Control>
+              <Form.File
+                id='image-file'
+                label='Choose a file'
+                custom
+                onChange={uploadFileHandler}
+              >
+                {uploading && <Loader />}
+              </Form.File>
             </Form.Group>
             <Form.Group controlId='launch'>
               <Form.Label>Launch:</Form.Label>
