@@ -14,6 +14,7 @@ import ShippingScreen from './screen/ShippingScreen';
 import PaymentMethodScreen from './screen/PaymentMethodScreen';
 import PlaceOrderScreen from './screen/PlaceOrderScreen';
 import OrderScreen from './screen/OrderScreen';
+import OrderListScreen from './screen/OrderListScreen';
 import UserListScreen from './screen/UserListScreen';
 import UserEditScreen from './screen/UserEditScreen';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -39,6 +40,7 @@ class App extends Component {
             <Route path='/assets/:dlink' component={AssetScreen} />
             <Route path='/admin/assetlist' component={AssetListScreen} />
             <Route path='/admin/assets/:dlink' component={AssetEditScreen} />
+            <Route path='/admin/orderlist' component={OrderListScreen} />
             <Route path='/requests/:dlink?' component={RequestsScreen} />
           </Container>
         </main>
