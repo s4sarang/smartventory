@@ -14,15 +14,6 @@ const getAssets = asyncHandler(async (req, res) => {
       }
     : {};
 
-  // const keywordModek = req.query.keyword
-  //   ? {
-  //       model: {
-  //         $regex: req.query.keyword,
-  //         $options: 'i',
-  //       },
-  //     }
-  //   : {};
-
   const assets = await Assets.find({ ...keyword });
   res.send(assets);
 });
