@@ -17,13 +17,20 @@ import {
   ASSET_UPDATE_FAIL,
 } from '../constants/assetConstants';
 
-export const listAssets = (keyword = '') => async (dispatch) => {
+export const listAssets = (keyword = '', pageNumber = '') => async (
+  dispatch
+) => {
   try {
     dispatch({ type: ASSET_LIST_REQUEST });
 
-    const { data } = await axios.get(`/api/assets?keyword=${keyword}`);
+    const { data } = await axios.get(
+      `/api/assets?keyword=${keyword}&pageNumber=${pageNumber}`
+    );
 
-    dispatch({ type: ASSET_LIST_SUCCESS, payload: data });
+    dispatch({
+      type: ASSET_LIST_SUCCESS,
+      payload: data,
+    });
   } catch (error) {
     dispatch({
       type: ASSET_LIST_FAIL,

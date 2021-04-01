@@ -5,6 +5,9 @@ import Assets from '../models/assetsModel.js';
 //@route GET /api/assets
 //@access Public
 const getAssets = asyncHandler(async (req, res) => {
+  const pageSize = 8;
+  const page = Number(req.query.pageNumber) || 1;
+
   const keyword = req.query.keyword
     ? {
         link: {
@@ -14,8 +17,11 @@ const getAssets = asyncHandler(async (req, res) => {
       }
     : {};
 
-  const assets = await Assets.find({ ...keyword });
-  res.send(assets);
+  const count = await Assets.countDocuments({ ...keyword });
+  const assets = await Assets.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+  res.send({ assets, page, pages: Math.ceil(count / pageSize) });
 });
 
 //@desc Fetch asset

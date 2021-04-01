@@ -23,7 +23,12 @@ export const assetListReducers = (state = { assets: [] }, action) => {
     case ASSET_LIST_REQUEST:
       return { loading: true, assets: [] };
     case ASSET_LIST_SUCCESS:
-      return { loading: false, assets: action.payload };
+      return {
+        loading: false,
+        assets: action.payload.assets,
+        pages: action.payload.pages,
+        page: action.payload.page,
+      };
     case ASSET_LIST_FAIL:
       return { loading: false, error: action.payload };
     default:

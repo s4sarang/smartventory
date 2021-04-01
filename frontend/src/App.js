@@ -38,11 +38,21 @@ class App extends Component {
             <Route path='/admin/userlist' component={UserListScreen} />
             <Route path='/admin/user/:id/edit' component={UserEditScreen} />
             <Route path='/assets/:dlink' component={AssetScreen} />
-            <Route path='/admin/assetlist' component={AssetListScreen} />
+            <Route path='/admin/assetlist' component={AssetListScreen} exact />
+            <Route
+              path='/admin/assetlist/:pageNumber'
+              component={AssetListScreen}
+              exact
+            />
             <Route path='/admin/assets/:dlink' component={AssetEditScreen} />
             <Route path='/admin/orderlist' component={OrderListScreen} />
             <Route path='/requests/:dlink?' component={RequestsScreen} />
-            <Route path='/search/:keyword' component={HomeScreen} />
+            <Route path='/search/:keyword' component={HomeScreen} exact />
+            <Route path='/page/:pageNumber' component={HomeScreen} exact />
+            <Route
+              path='/search/:keyword/page/:pageNumber'
+              component={HomeScreen}
+            />
           </Container>
         </main>
         <Footer />

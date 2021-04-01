@@ -6,12 +6,15 @@ import { listAssets, deleteAsset, createAsset } from '../actions/assetActions';
 import { ASSET_CREATE_RESET } from '../constants/assetConstants';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Paginate from '../components/Paginate';
 
 const AssetListScreen = ({ match, history }) => {
   const dispatch = useDispatch();
 
+  const pageNumber = match.params.pageNumber;
+
   const assetList = useSelector((state) => state.assetList);
-  const { loading, assets, error } = assetList;
+  const { loading, assets, error, pages, page } = assetList;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -40,9 +43,17 @@ const AssetListScreen = ({ match, history }) => {
     if (successCreate) {
       history.push(`/admin/assets/${createdAsset.link}`);
     } else {
-      dispatch(listAssets());
+      dispatch(listAssets('', pageNumber));
     }
-  }, [dispatch, userInfo, history, successDelete, successCreate, createdAsset]);
+  }, [
+    dispatch,
+    userInfo,
+    history,
+    successDelete,
+    successCreate,
+    createdAsset,
+    pageNumber,
+  ]);
 
   const deleteAssetHandler = (dlink) => {
     if (window.confirm('Are you sure?')) {
@@ -74,43 +85,46 @@ const AssetListScreen = ({ match, history }) => {
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
-        <Table bordered hover responsive striped className='table-sm'>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>BRAND</th>
-              <th>MODEL</th>
-              <th>CATEGORY</th>
-              <th>PRICE</th>
-              <th>OPTION</th>
-            </tr>
-          </thead>
-          <tbody>
-            {assets.map((asset) => (
-              <tr key={asset.link}>
-                <td>{asset.link}</td>
-                <td>{asset.brand}</td>
-                <td>{asset.model}</td>
-                <td>{asset.category}</td>
-                <td>{asset.price}</td>
-                <td>
-                  <LinkContainer to={`/admin/assets/${asset.link}/edit`}>
-                    <Button variant='warning' className='btn-sm'>
-                      <i className='zmdi zmdi-edit'></i>
-                    </Button>
-                  </LinkContainer>
-                  <Button
-                    variant='danger'
-                    className='btn-sm'
-                    onClick={() => deleteAssetHandler(asset.link)}
-                  >
-                    <i className='zmdi zmdi-delete'></i>
-                  </Button>
-                </td>
+        <>
+          <Table bordered hover responsive striped className='table-sm'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>BRAND</th>
+                <th>MODEL</th>
+                <th>CATEGORY</th>
+                <th>PRICE</th>
+                <th>OPTION</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {assets.map((asset) => (
+                <tr key={asset.link}>
+                  <td>{asset.link}</td>
+                  <td>{asset.brand}</td>
+                  <td>{asset.model}</td>
+                  <td>{asset.category}</td>
+                  <td>{asset.price}</td>
+                  <td>
+                    <LinkContainer to={`/admin/assets/${asset.link}/edit`}>
+                      <Button variant='warning' className='btn-sm'>
+                        <i className='zmdi zmdi-edit'></i>
+                      </Button>
+                    </LinkContainer>
+                    <Button
+                      variant='danger'
+                      className='btn-sm'
+                      onClick={() => deleteAssetHandler(asset.link)}
+                    >
+                      <i className='zmdi zmdi-delete'></i>
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <Paginate page={page} pages={pages} keyword='' isAdmin={true} />
+        </>
       )}
     </>
   );
