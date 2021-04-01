@@ -5,7 +5,25 @@ import Assets from '../models/assetsModel.js';
 //@route GET /api/assets
 //@access Public
 const getAssets = asyncHandler(async (req, res) => {
-  const assets = await Assets.find({});
+  const keyword = req.query.keyword
+    ? {
+        link: {
+          $regex: req.query.keyword,
+          $options: 'i',
+        },
+      }
+    : {};
+
+  // const keywordModek = req.query.keyword
+  //   ? {
+  //       model: {
+  //         $regex: req.query.keyword,
+  //         $options: 'i',
+  //       },
+  //     }
+  //   : {};
+
+  const assets = await Assets.find({ ...keyword });
   res.send(assets);
 });
 

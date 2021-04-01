@@ -1,8 +1,10 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { logout } from '../actions/userActions';
+import SearchBox from './SearchBox';
 
 const Header = ({ location }) => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -37,6 +39,9 @@ const Header = ({ location }) => {
                 <i className='zmdi zmdi-money'></i> Procurement
               </Nav.Link>
             </LinkContainer>
+          </Nav>
+          <Nav>
+            <Route render={({ history }) => <SearchBox history={history} />} />
           </Nav>
           <Nav className='ml-auto'>
             <LinkContainer to='/whatsnew'>

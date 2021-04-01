@@ -6,14 +6,16 @@ import { listAssets } from '../actions/assetActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
+  const keyword = match.params.keyword;
+
   const dispatch = useDispatch();
   const assetList = useSelector((state) => state.assetList);
   const { loading, error, assets } = assetList;
 
   useEffect(() => {
-    dispatch(listAssets());
-  }, [dispatch]);
+    dispatch(listAssets(keyword));
+  }, [dispatch, keyword]);
 
   return (
     <>

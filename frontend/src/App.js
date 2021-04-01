@@ -42,6 +42,7 @@ class App extends Component {
             <Route path='/admin/assets/:dlink' component={AssetEditScreen} />
             <Route path='/admin/orderlist' component={OrderListScreen} />
             <Route path='/requests/:dlink?' component={RequestsScreen} />
+            <Route path='/search/:keyword' component={HomeScreen} />
           </Container>
         </main>
         <Footer />
