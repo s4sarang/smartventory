@@ -14,6 +14,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { listAssetDetails } from '../actions/assetActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 
 const AssetScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
@@ -31,6 +32,7 @@ const AssetScreen = ({ history, match }) => {
 
   return (
     <>
+      <Meta title={`${asset.brand} ${asset.model}`} />
       <LinkContainer to='/'>
         <Button className='my-3' variant='light'>
           Back

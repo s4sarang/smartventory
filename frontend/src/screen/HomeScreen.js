@@ -6,6 +6,7 @@ import { listAssets } from '../actions/assetActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Paginate from '../components/Paginate';
+import Meta from '../components/Meta';
 import AssetCarousel from '../components/AssetCarousel';
 
 const HomeScreen = ({ match }) => {
@@ -23,6 +24,7 @@ const HomeScreen = ({ match }) => {
 
   return (
     <>
+      <Meta title={'SmartInventory | Home'} />
       <h1>Welcome to SmartVentory!</h1>
       {!keyword && <AssetCarousel />}
       <h3 id='mini-title'>Assets</h3>
