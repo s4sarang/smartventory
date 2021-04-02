@@ -99,4 +99,25 @@ const updateAsset = asyncHandler(async (req, res) => {
     throw Error('Asset Not Found!');
   }
 });
-export { getAssets, getAssetsByLink, deleteAsset, createAsset, updateAsset };
+
+//@desc get top assets
+//@route GET /api/assets/top
+//@access Public
+const getTopAssets = asyncHandler(async (req, res) => {
+  const assets = await Assets.find({}).sort({ count: -1 }).limit(3);
+  if (assets) {
+    res.json(asset);
+  } else {
+    res.status(404);
+    throw Error('Asset Not Found!');
+  }
+});
+
+export {
+  getAssets,
+  getAssetsByLink,
+  deleteAsset,
+  createAsset,
+  updateAsset,
+  getTopAssets,
+};
