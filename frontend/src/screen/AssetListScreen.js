@@ -19,6 +19,8 @@ const AssetListScreen = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  console.log(userInfo);
+
   const assetDelete = useSelector((state) => state.assetDelete);
   const {
     loading: loadingDelete,
@@ -36,7 +38,7 @@ const AssetListScreen = ({ match, history }) => {
 
   useEffect(() => {
     dispatch({ type: ASSET_CREATE_RESET });
-    if (!userInfo.isAdmin) {
+    if (!userInfo || !userInfo.isAdmin) {
       history.push('/login');
     }
 

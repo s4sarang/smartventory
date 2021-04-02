@@ -26,6 +26,11 @@ h5 {
   padding: 0.3rem 0;
 }
 
+#mini-title {
+  text-align: center;
+  padding: 0.3rem 0;
+}
+
 /* carousel */
 .carousel-item-next,
 .carousel-item-prev,
@@ -35,6 +40,8 @@ h5 {
 .carousel-caption {
   position: absolute;
   top: 0;
+  /* margin-left: 20%; */
+  margin-right: 8%;
 }
 
 .carousel-caption h2 {

@@ -25,7 +25,7 @@ const HomeScreen = ({ match }) => {
     <>
       <h1>Welcome to SmartVentory!</h1>
       {!keyword && <AssetCarousel />}
-      <h3>Assets</h3>
+      <h3 id='mini-title'>Assets</h3>
       {loading ? (
         <Loader />
       ) : error ? (
