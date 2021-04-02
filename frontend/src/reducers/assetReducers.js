@@ -16,6 +16,9 @@ import {
   ASSET_UPDATE_SUCCESS,
   ASSET_UPDATE_FAIL,
   ASSET_UPDATE_RESET,
+  ASSET_TOP_REQUEST,
+  ASSET_TOP_SUCCESS,
+  ASSET_TOP_FAIL,
 } from '../constants/assetConstants';
 
 export const assetListReducers = (state = { assets: [] }, action) => {
@@ -87,6 +90,19 @@ export const assetUpdateReducers = (state = { asset: {} }, action) => {
       return { loading: false, error: action.payload };
     case ASSET_UPDATE_RESET:
       return { asset: {} };
+    default:
+      return state;
+  }
+};
+
+export const assetTopReducers = (state = { assets: [] }, action) => {
+  switch (action.type) {
+    case ASSET_TOP_REQUEST:
+      return { loading: true, assets: [] };
+    case ASSET_TOP_SUCCESS:
+      return { loading: false, assets: action.payload };
+    case ASSET_TOP_FAIL:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }

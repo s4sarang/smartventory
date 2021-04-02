@@ -15,6 +15,9 @@ import {
   ASSET_UPDATE_REQUEST,
   ASSET_UPDATE_SUCCESS,
   ASSET_UPDATE_FAIL,
+  ASSET_TOP_REQUEST,
+  ASSET_TOP_SUCCESS,
+  ASSET_TOP_FAIL,
 } from '../constants/assetConstants';
 
 export const listAssets = (keyword = '', pageNumber = '') => async (
@@ -154,6 +157,27 @@ export const updateAsset = (asset) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: ASSET_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listTopAssets = () => async (dispatch) => {
+  try {
+    dispatch({ type: ASSET_TOP_REQUEST });
+
+    const { data } = await axios.get('/api/assets/top');
+
+    dispatch({
+      type: ASSET_TOP_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ASSET_TOP_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

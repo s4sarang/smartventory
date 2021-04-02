@@ -106,7 +106,7 @@ const updateAsset = asyncHandler(async (req, res) => {
 const getTopAssets = asyncHandler(async (req, res) => {
   const assets = await Assets.find({}).sort({ count: -1 }).limit(3);
   if (assets) {
-    res.json(asset);
+    res.json(assets);
   } else {
     res.status(404);
     throw Error('Asset Not Found!');

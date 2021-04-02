@@ -7,6 +7,7 @@ import {
   assetDeleteReducers,
   assetCreateReducers,
   assetUpdateReducers,
+  assetTopReducers,
 } from './reducers/assetReducers';
 import { requestsReducer } from './reducers/requestsReducers';
 import {
@@ -33,6 +34,7 @@ const reducer = combineReducers({
   assetDelete: assetDeleteReducers,
   assetCreate: assetCreateReducers,
   assetUpdate: assetUpdateReducers,
+  assetTop: assetTopReducers,
   requests: requestsReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,

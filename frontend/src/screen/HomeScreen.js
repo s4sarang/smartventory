@@ -6,6 +6,7 @@ import { listAssets } from '../actions/assetActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Paginate from '../components/Paginate';
+import AssetCarousel from '../components/AssetCarousel';
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword;
@@ -23,6 +24,8 @@ const HomeScreen = ({ match }) => {
   return (
     <>
       <h1>Welcome to SmartVentory!</h1>
+      {!keyword && <AssetCarousel />}
+      <h3>Assets</h3>
       {loading ? (
         <Loader />
       ) : error ? (
