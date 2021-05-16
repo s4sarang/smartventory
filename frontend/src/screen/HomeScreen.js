@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { LinkContainer } from 'react-router-bootstrap';
 import AssetsComponent from '../components/Assets';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row, Button } from 'react-bootstrap';
 import { listAssets } from '../actions/assetActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -26,7 +27,15 @@ const HomeScreen = ({ match }) => {
     <>
       <Meta title={'SmartInventory | Home'} />
       <h1>Welcome to SmartVentory!</h1>
-      {!keyword && <AssetCarousel />}
+      {!keyword ? (
+        <AssetCarousel />
+      ) : (
+        <LinkContainer to='/'>
+          <Button className='my-3' variant='light'>
+            Back
+          </Button>
+        </LinkContainer>
+      )}
       <h3 id='mini-title'>Assets</h3>
       {loading ? (
         <Loader />
